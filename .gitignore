@@ -1,0 +1,5 @@
+/target
+.DS_Store
+.idea/
+Cargo.lock
+m3u8_downer.iml

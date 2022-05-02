@@ -1,0 +1,12 @@
+[package]
+name = "m3u8_downer"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+reqwest = { version = "0.11", features = ["json"] }
+tokio = { version = "1", features = ["full"] }
+rust-crypto = "^0.2"
+tokio-dl-stream-to-disk = "0.3.0"
