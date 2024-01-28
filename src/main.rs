@@ -1,28 +1,19 @@
 mod worker;
 
-use std::{
-    collections::VecDeque,
-    fmt::format,
-    fs,
-    path::Path,
-    sync::{Arc, Mutex},
-    thread, time,
-};
-
-use reqwest::Url;
-
-use crypto::digest::Digest;
-use crypto::md5::Md5;
-
-type Result<T> = std::result::Result<T, Box<dyn std::error::Error + Send + Sync>>;
-
 #[tokio::main]
 async fn main() {
-    let url = "https://ddys.pro/getvddr2/video?id=Sx3JyZPjXbE8lm1QeG01oFbsgtyL3js09q3GJeGtKi9beVB9gKOUP4ssxWIvh2UXlifMB6JgX%2B1ubF4%2B50MN7GIzIgEAtBEATsgz285gMZU%3D&type=json";
+    let args: Vec<String> = std::env::args().collect();
 
-    worker::Worker::new(url.to_string(), "./hello".to_string())
+    let url = args.get(1).unwrap().to_string();
+    let name = args.get(2).unwrap().to_string();
+
+    println!("{:?}", args);
+
+    worker::Worker::new(url, format!("./{}", name))
         .await
         .unwrap()
-        .start(10)
+        .start(32)
+        .await
+        .merge_file()
         .await;
 }

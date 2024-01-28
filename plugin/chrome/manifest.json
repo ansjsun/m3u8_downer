@@ -1,0 +1,31 @@
+{
+    "manifest_version": 2,
+    "name": "m3u8_downer",
+    "version": "0.1.0",
+    "description": "A simple Chrome extension to grab m3u8 URLs and page titles",
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "webRequest",
+        "<all_urls>"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
+    "browser_action": {
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "scripts": [
+            "background.js",
+            "hot-reload.js"
+        ]
+    }
+}
